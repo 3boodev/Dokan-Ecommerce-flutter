@@ -1,0 +1,6 @@
+package com.ecommerce.dokan
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}

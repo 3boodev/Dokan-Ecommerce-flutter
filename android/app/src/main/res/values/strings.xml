@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">dokan</string>
+    <string name="facebook_app_id">217086993913020</string>
+    <string name="fb_login_protocol_scheme">fb217086993913020</string>
+</resources>
