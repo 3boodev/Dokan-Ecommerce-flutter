@@ -17,3 +17,8 @@ const kTileHeight = 50.0;
 const inProgressColor = Colors.black87;
 const todoColor = Color(0xffd1d2d7);
 
+
+
+//const Color primColor = Color(0xFF2967FF);
+const Color grayColor = Color(0xFF8D8D8E);
+const double defaultPadding = 16.0;

@@ -1,5 +1,6 @@
 import 'package:dokan/core/viewmodel/control_view_model.dart';
 import 'package:dokan/core/viewmodel/home_view_model.dart';
+import 'package:dokan/shared/adaptive/newcard_skeleton.dart';
 import 'package:dokan/shared/components/adaptive/components.dart';
 import 'package:dokan/shared/constants/const.dart';
 import 'package:dokan/view/auth/login_screen.dart';
@@ -15,7 +16,12 @@ class HomeView extends StatelessWidget {
     return GetBuilder<HomeViewModel>(
       init: Get.find(),
       builder: (controller)=>controller.loading.value
-          ? Center(child: CircularProgressIndicator())
+          ?  ListView.separated(
+              itemCount: 5,
+              itemBuilder: (context, index) => const NewsCardSkelton(),
+              separatorBuilder: (context, index) =>
+              const SizedBox(height: defaultPadding),
+            )
           :Scaffold(
             body:SingleChildScrollView(
               child: Container(
