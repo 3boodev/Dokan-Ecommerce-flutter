@@ -33,7 +33,7 @@ class DetailsView extends StatelessWidget {
                      crossAxisAlignment: CrossAxisAlignment.start,
                      children: [
                        SizedBox(height: 10,),
-                       defaultText(text: productdetailsModel.name, fontsize: 26, color: Colors.black),
+                       defaultText(text: productdetailsModel.name, fontsize: 26,),
                        SizedBox(height: 20,),
                        Row(
                          mainAxisAlignment: MainAxisAlignment.center,
@@ -48,8 +48,8 @@ class DetailsView extends StatelessWidget {
                              child: Row(
                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                children: [
-                                 defaultText(text: 'Size', fontsize: 18, color: Colors.black87),
-                                 defaultText(text: productdetailsModel.sized, fontsize: 20, color: Colors.black),
+                                 defaultText(text: 'Size', fontsize: 18,),
+                                 defaultText(text: productdetailsModel.sized, fontsize: 20,),
                                ],
                              ),
                            ),
@@ -64,7 +64,7 @@ class DetailsView extends StatelessWidget {
                              child: Row(
                                mainAxisAlignment: MainAxisAlignment.spaceAround,
                                children: [
-                                 defaultText(text: 'Colour', fontsize: 18, color: Colors.black87),
+                                 defaultText(text: 'Colour', fontsize: 18,),
                                  Container(
                                    width: 20,height: 20,
                                    decoration:BoxDecoration(
@@ -78,9 +78,9 @@ class DetailsView extends StatelessWidget {
                          ],
                        ),
                        SizedBox(height: 30,),
-                       defaultText(text:'Details', fontsize: 20, color: Colors.black),
+                       defaultText(text:'Details', fontsize: 20,),
                        SizedBox(height: 10,),
-                       defaultText(text: productdetailsModel.description, fontsize: 14, color: Colors.black,linehight: 2),
+                       defaultText(text: productdetailsModel.description, fontsize: 14,linehight: 2),
                        SizedBox(height: 10,),
                      ],
                    ),

@@ -1,12 +1,13 @@
 
 import 'package:dokan/shared/constants/const.dart';
 import 'package:flutter/material.dart';
+import 'package:path/path.dart';
 
 Widget defaultText({
   bool isuppercase=true,
   @required String text,
   @required double fontsize,
-  @required Color color,
+  Color color,
   int  maxline,
   double linehight=1,
 })=>Text(
@@ -72,7 +73,6 @@ Widget defaultButton({
     ),
   ),
 );
-
 Widget defaultTextButton({
   @required Function onPress,
   @required String text,
@@ -108,7 +108,7 @@ Widget defaultTextButton({
     child: FlatButton(
         onPressed: onPress,
         child:ListTile(
-        title: defaultText(text:text , fontsize:22, color: Colors.black),
+        title: defaultText(text:text , fontsize:22,),
         leading:Image.asset(image_name),
         trailing: Icon(Icons.arrow_forward_ios),
         ),

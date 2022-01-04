@@ -40,7 +40,7 @@ class Register_Screen  extends GetWidget<AuthViewModel> {
                               if(value.isEmpty){return 'Name Must Complete';}
                           },
                           onchange: (value){
-                            controller.password=value;
+                            controller.name=value;
                           },
                           label: 'Name',
                           type: TextInputType.name,
@@ -52,7 +52,7 @@ class Register_Screen  extends GetWidget<AuthViewModel> {
                             if(value.isEmpty){return 'Email Must Complete';}
                           },
                           onchange: (value){
-                            controller.password=value;
+                            controller.email=value;
                           },
                           label: 'Email',
                           type: TextInputType.emailAddress,

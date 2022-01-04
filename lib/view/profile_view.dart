@@ -41,9 +41,9 @@ class ProfileView extends StatelessWidget {
                           Column(
                             children: [
                               defaultText(text:controller.usermodel.name,
-                                  fontsize: 20, color: Colors.black),
+                                  fontsize: 20,),
                               defaultText(text:controller.usermodel.email,
-                                  fontsize: 14, color: Colors.black54),
+                                  fontsize: 14,),
                             ],
                           ),
                         ],

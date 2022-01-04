@@ -62,7 +62,6 @@ class ControlView extends GetWidget<AuthViewModel> {
         },
         elevation: 0,
         selectedItemColor: Colors.black,
-        backgroundColor: Colors.grey.shade50,
       ),
     );
   }

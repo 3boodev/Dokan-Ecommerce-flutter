@@ -20,7 +20,7 @@ class CartView extends StatelessWidget {
           children: [
             Center(child: SvgPicture.asset('assets/images/empty_cart.svg',width: 220,height: 220,fit: BoxFit.fill,)),
             SizedBox(height: 50,),
-            defaultText(text: 'Cart  Empty', fontsize: 25, color: Colors.black)
+            defaultText(text: 'Cart  Empty', fontsize: 25,)
           ],)
             :Column(
           children: [
@@ -41,7 +41,7 @@ class CartView extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    defaultText(text:controller.cartProductModel[index].name, fontsize: 20, color: Colors.black),
+                                    defaultText(text:controller.cartProductModel[index].name, fontsize: 20,),
                                     SizedBox(height: 10),
                                     defaultText(text: '\$${controller.cartProductModel[index].price}', fontsize: 20, color: primaryColor),
                                     SizedBox(height: 10),
@@ -59,14 +59,14 @@ class CartView extends StatelessWidget {
                                               onTap: (){
                                             controller.increaseQuantity(index);
                                           }
-                                          ,child: Icon(Icons.add,color: Colors.black87,)
+                                          ,child: Icon(Icons.add,color: Colors.black87,size: 30,)
                                           ),
                                           SizedBox(width: 15,),
                                           defaultText(text: controller.cartProductModel[index].quantity.toString(), fontsize: 20, color: Colors.black),
                                           SizedBox(width: 15,),
                                           GestureDetector(onTap: (){
                                             controller.decreaseQuantity(index);
-                                          },child: Container(padding:EdgeInsets.only(bottom: 15),child: Icon(Icons.minimize,color: Colors.black87)),
+                                          },child: Container(padding:EdgeInsets.only(bottom: 15),child: Icon(Icons.minimize,color: Colors.black87,size: 30)),
                                           ),
                                         ],
                                       ),
