@@ -41,7 +41,7 @@ class HomeView extends StatelessWidget {
                                 IconButton(
                                   alignment: Alignment.topRight,
                                   icon: Icon(
-                                    controller.isDarkMode ?Icons.nights_stay : Icons.wb_sunny_rounded,
+                                    controller.getstorage.read(controller.storageKey)==null||controller.getstorage.read(controller.storageKey)==false ?Icons.wb_sunny_rounded : Icons.nights_stay,
                                   ),
                                   onPressed: () =>  controller.toggleDarkMode(),
                                 ),

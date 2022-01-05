@@ -27,20 +27,22 @@ import 'package:get_storage/get_storage.dart';
 
 class ThemeViewModel extends GetxController {
 
-  bool isDarkMode = false;
-
-  final _getstorage = GetStorage();
+  final getstorage = GetStorage();
 
   final storageKey = "isDarkMode";
 
+
   void toggleDarkMode() {
-    isDarkMode = !isDarkMode;
-    if (isDarkMode) {
-      Get.changeTheme(ThemeData.dark());
-      _getstorage.write(storageKey, true);
-    } else {
+    getstorage.write(storageKey, !getstorage.read(storageKey));
+    if (getstorage.read(storageKey)==null) {
       Get.changeTheme(ThemeData.light());
-      _getstorage.write(storageKey, false);
+      getstorage.write(storageKey, false);
+    } else if(getstorage.read(storageKey)==true) {
+      Get.changeTheme(ThemeData.dark());
+      getstorage.write(storageKey, true);
+    }else{
+      Get.changeTheme(ThemeData.light());
+      getstorage.write(storageKey, false);
     }
     update();
   }
