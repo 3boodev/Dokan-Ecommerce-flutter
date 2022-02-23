@@ -9,7 +9,7 @@ class ControlViewModel extends GetxController{
   get navigatorvalue=>_navigatorvalue;
   Widget _currentview=HomeView();
   get currentview=>_currentview;
-  void changeSelectedValue(int selectedvalue){
+   changeSelectedValue(int selectedvalue){
     _navigatorvalue=selectedvalue;
     switch(selectedvalue){
       case 0:{

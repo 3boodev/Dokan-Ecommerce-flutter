@@ -3,6 +3,7 @@ import 'package:dokan/core/viewmodel/cart_view_model.dart';
 import 'package:dokan/core/viewmodel/checkout_view_model.dart';
 import 'package:dokan/core/viewmodel/control_view_model.dart';
 import 'package:dokan/core/viewmodel/home_view_model.dart';
+import 'package:dokan/core/viewmodel/profile_view_model.dart';
 import 'package:dokan/core/viewmodel/themes_view_model.dart';
 import 'package:dokan/helper/local_storage_data.dart';
 import 'package:get/get.dart';
@@ -17,5 +18,6 @@ class Binding extends Bindings{
    Get.lazyPut(() => LocalStorageData());
    Get.lazyPut(() => CheckOutViewModel());
    Get.lazyPut(() => ThemeViewModel());
+   Get.lazyPut(() => ProfileViewModel());
   }
 }

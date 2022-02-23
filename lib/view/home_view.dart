@@ -1,6 +1,4 @@
-import 'package:dokan/core/services/theme_service.dart';
 import 'package:dokan/core/viewmodel/home_view_model.dart';
-import 'package:dokan/core/viewmodel/themes_view_model.dart';
 import 'package:dokan/shared/adaptive/newcard_skeleton.dart';
 import 'package:dokan/shared/components/adaptive/components.dart';
 import 'package:dokan/shared/constants/const.dart';
@@ -27,28 +25,6 @@ class HomeView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      width: double.infinity,
-                      height: 45,
-                      alignment: Alignment.topRight,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          defaultText(text: '', fontsize: 10,),
-                          GetBuilder<ThemeViewModel>(
-                            init: Get.find(),
-                            builder: (controller) =>
-                                IconButton(
-                                  alignment: Alignment.topRight,
-                                  icon: Icon(
-                                    controller.getstorage.read(controller.storageKey)==null||controller.getstorage.read(controller.storageKey)==false ?Icons.wb_sunny_rounded : Icons.nights_stay,
-                                  ),
-                                  onPressed: () =>  controller.toggleDarkMode(),
-                                ),
-                          ),
-                        ],
-                      ),
-                    ),
                     _textFormSearch(),
                     SizedBox(height: 30,),
                     defaultText(text: 'Categories', fontsize: 20,),
@@ -121,31 +97,44 @@ class HomeView extends StatelessWidget {
   Widget _listviewprouducts(){
     return GetBuilder<HomeViewModel>(
       builder:(controller)=> Container(
-        height: 280,
-        child: ListView.separated(
+        padding: EdgeInsets.only(bottom: 10),
+        height: 450,
+        child: GridView.builder(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 2.3/ 3,
+            crossAxisSpacing: 5,
+            mainAxisSpacing: 1,
+          ),
+          shrinkWrap: true,
+          physics: const ClampingScrollPhysics(),
+          padding: EdgeInsets.zero,
           itemCount: controller.productModel.length,
-          scrollDirection: Axis.horizontal,
+          scrollDirection: Axis.vertical,
           itemBuilder: (context,index){
             return GestureDetector(
               onTap: (){
                 Get.to(() => DetailsView(productdetailsModel:controller.productModel[index]));
               },
               child: Container(
-                width: MediaQuery.of(context).size.width*0.45,
+                width: MediaQuery.of(context).size.width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
+                      padding: EdgeInsets.all(5),
                       height: 200,
-                      width: MediaQuery.of(context).size.width*0.45,
+                      width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
-                        color: Colors.grey.shade50,
+                        color: Get.isDarkMode
+                            ? Colors.black12
+                            : Colors.white,
                       ),
                       child: Container(
                         height: 220,
                         //child: Image.asset('assets/images/Image.png',fit: BoxFit.fill,),
-                        child: Image.network(controller.productModel[index].image,fit: BoxFit.fill,),
+                        child: Image.network(controller.productModel[index].image,fit: BoxFit.fitHeight,),
                       ),
                     ),
                     SizedBox(height: 5),
@@ -158,7 +147,7 @@ class HomeView extends StatelessWidget {
                 ),
               ),
             );
-          }, separatorBuilder: (context,index)=>SizedBox(width: 15,),
+          },
         ),
       ),
     );

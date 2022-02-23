@@ -23,7 +23,7 @@ class CheckOutViewModel extends GetxController{
       _pages=Pages.AddAddress;
       _index=i;
     }else if(i == 2){
-      formstate.currentState.save();
+      formstate.currentState?.save();
       if(formstate.currentState.validate()){
         _pages=Pages.Summary;
         _index=i;

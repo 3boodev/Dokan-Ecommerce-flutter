@@ -2,7 +2,6 @@ import 'package:dokan/core/viewmodel/cart_view_model.dart';
 import 'package:dokan/core/viewmodel/checkout_view_model.dart';
 import 'package:dokan/shared/components/adaptive/components.dart';
 import 'package:dokan/shared/constants/const.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -32,7 +31,7 @@ class Summary extends StatelessWidget {
                          child: Image.network(controller.cartProductModel[index].image,fit: BoxFit.fitHeight,),
                        ),
                        SizedBox(height: 5,),
-                       defaultText(text: controller.cartProductModel[index].name, fontsize: 13, color: Colors.black,maxline: 1),
+                       defaultText(text: controller.cartProductModel[index].name, fontsize: 13,maxline: 1),
                        SizedBox(height: 5,),
                        defaultText(text: '\$${controller.cartProductModel[index].price}', fontsize: 15, color: primaryColor,maxline: 1)
                      ],
@@ -43,13 +42,13 @@ class Summary extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: defaultText(text: 'Shipping Address', fontsize: 24, color: Colors.black,maxline: 1),
+                child: defaultText(text: 'Shipping Address', fontsize: 24,maxline: 1),
               ),
               GetBuilder<CheckOutViewModel>(
                 builder: (controller)=>
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: defaultText(text: '${controller.street1 + ', ' +controller.street2+ ', ' + controller.city+ ', ' +controller.state+ ', ' +controller.country }'.toString(), fontsize: 18, color: Colors.black87),
+                      child: defaultText(text: '${controller.street1 + ', ' +controller.street2+ ', ' + controller.city+ ', ' +controller.state+ ', ' +controller.country }'.toString(), fontsize: 16,),
                     ),
               ),
             ],

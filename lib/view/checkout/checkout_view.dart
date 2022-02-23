@@ -18,16 +18,12 @@ class CheckOutView extends StatelessWidget {
       builder:(controller)=> Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: Colors.white,
           elevation: 0.0,
           title: Text(
             "CheckOut",
-            style: TextStyle(
-              color: Colors.black,
-            ),
           ),
         ),
-        backgroundColor: Colors.white,
+
         body: Column(
           children: [
             Container(
@@ -124,7 +120,6 @@ class CheckOutView extends StatelessWidget {
                        text: 'BACK',
                        fontsize: 20,
                        radius: 5,
-                       textcolor: Colors.black,
                        background: Colors.transparent,
                        width: 120,
                        onpress: (){

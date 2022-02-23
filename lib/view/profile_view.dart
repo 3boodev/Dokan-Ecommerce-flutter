@@ -1,5 +1,7 @@
 import 'package:dokan/core/viewmodel/profile_view_model.dart';
+import 'package:dokan/core/viewmodel/themes_view_model.dart';
 import 'package:dokan/shared/components/adaptive/components.dart';
+import 'package:dokan/shared/constants/const.dart';
 import 'package:dokan/view/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -49,7 +51,39 @@ class ProfileView extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(height: 50,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 25,right: 20,top: 10),
+                      child: Container(
+                        width: double.infinity,
+                        height: 45,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            defaultText(text: 'Change Theme', fontsize: 22,),
+                            GetBuilder<ThemeViewModel>(
+                              init: Get.find(),
+                              builder: (controller) =>
+                              Container(
+                                decoration: BoxDecoration(
+                                  color: Get.isDarkMode
+                                      ? Colors.blue.shade500
+                                      : primaryColor,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: IconButton(
+                                  icon: Icon(
+                                    controller.getstorage.read(controller.storageKey)==null||controller.getstorage.read(controller.storageKey)==false ?Icons.wb_sunny_rounded : Icons.nights_stay,
+                                    color: Colors.white,
+                                  ),
+                                  onPressed: () =>  controller.toggleDarkMode(),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 30,),
                     ProfileButtons(
                         onPress: (){},
                         text: 'Edit Profile',

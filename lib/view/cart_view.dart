@@ -2,8 +2,6 @@ import 'package:dokan/core/viewmodel/cart_view_model.dart';
 import 'package:dokan/shared/components/adaptive/components.dart';
 import 'package:dokan/shared/constants/const.dart';
 import 'package:dokan/view/checkout/checkout_view.dart';
-import 'package:dokan/view/home_view.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -13,8 +11,8 @@ class CartView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<CartViewModel>(
       init:Get.find(),
-      builder:(controller)=>Scaffold(
-        body: controller.cartProductModel.length==0
+      builder:(controller)=>SafeArea(
+        child: controller.cartProductModel.length==0
             ? Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -26,15 +24,25 @@ class CartView extends StatelessWidget {
           children: [
             Expanded(
               child: Container(
+                      padding:  EdgeInsets.only(top: 5,right: 5,left: 5),
                       child: ListView.separated(
+                        physics:BouncingScrollPhysics(),
                       itemBuilder: (context,index){
                         return Container(
+                          decoration: BoxDecoration(
+                            color: Get.isDarkMode
+                                ? Colors.black38
+                                : Colors.black12,
+                            shape: BoxShape.rectangle,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          padding: EdgeInsets.only(top: 5,bottom: 5),
                           height: 140,
                           child: Row(
                             children: [
                               Container(
                                   width: 140,
-                                  child: Image.network(controller.cartProductModel[index].image,fit: BoxFit.cover,),
+                                  child: Image.network(controller.cartProductModel[index].image,fit: BoxFit.fitHeight,),
                               ),
                               Padding(
                                 padding: const EdgeInsets.only(left: 15,top: 10,right: 10),
@@ -50,23 +58,48 @@ class CartView extends StatelessWidget {
                                       height: 40,
                                       decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(10),
-                                        color:Colors.grey.shade200 ,
+                                        color:Get.isDarkMode
+                                            ? Colors.black54
+                                            : Colors.grey.shade200 ,
                                       ),
                                       child: Row(
                                         mainAxisAlignment: MainAxisAlignment.center,
                                         children: [
-                                          GestureDetector(
-                                              onTap: (){
-                                            controller.increaseQuantity(index);
-                                          }
-                                          ,child: Icon(Icons.add,color: Colors.black87,size: 30,)
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              color: Get.isDarkMode
+                                                  ? Colors.white
+                                                  : Colors.white,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: GestureDetector(onTap: (){
+                                              controller.decreaseQuantity(index);
+                                            },
+                                              child: Icon(
+                                              Icons.remove_circle,
+                                              color: Get.isDarkMode ? Colors.black :primaryColor,
+                                            ),
+                                            ),
                                           ),
                                           SizedBox(width: 15,),
-                                          defaultText(text: controller.cartProductModel[index].quantity.toString(), fontsize: 20, color: Colors.black),
+                                          defaultText(text: controller.cartProductModel[index].quantity.toString(), fontsize: 20,),
                                           SizedBox(width: 15,),
-                                          GestureDetector(onTap: (){
-                                            controller.decreaseQuantity(index);
-                                          },child: Container(padding:EdgeInsets.only(bottom: 15),child: Icon(Icons.minimize,color: Colors.black87,size: 30)),
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              color: Get.isDarkMode
+                                                  ? Colors.white
+                                                  : Colors.white,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            child: GestureDetector(
+                                                onTap: (){
+                                                  controller.increaseQuantity(index);
+                                                }
+                                                ,child:  Icon(
+                                              Icons.add_circle,
+                                              color: Get.isDarkMode ? Colors.black : primaryColor,
+                                            ),
+                                            ),
                                           ),
                                         ],
                                       ),

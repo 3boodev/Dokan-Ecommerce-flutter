@@ -14,8 +14,11 @@ class AuthViewModel extends GetxController{
   FacebookLogin _facebookLogin=FacebookLogin();
 
   String email,password,name;
-  Rx<User> _user=Rx<User>();
+  //Rx<User> _user=Rx<User>();
+  //_user = User().obs;
+  Rxn<User> _user = Rxn<User>();
   String get user=>_user.value?.email;
+
 
   final LocalStorageData localStorageData=Get.find();
 
@@ -43,37 +46,37 @@ class AuthViewModel extends GetxController{
   }
   void googleSignInMethode()async{
     final GoogleSignInAccount googleuser=await _googleSignIn.signIn();
-     GoogleSignInAuthentication googleSignInAuthentication=await googleuser.authentication;
-     final AuthCredential credential =GoogleAuthProvider.credential(
-       idToken:googleSignInAuthentication.idToken,
-       accessToken: googleSignInAuthentication.accessToken
-     );
-     await _auth.signInWithCredential(credential).then((user)async{
-       Get.dialog(Container(
-         width: 80,
-         height: 100,
-         child: Column(
-           crossAxisAlignment: CrossAxisAlignment.center,
-           children: [
-           CircularProgressIndicator(),
-           Text('wait for Login For Dokan'),
-         ],),
-       ),);
-       saveUser(user);
-       Get.offAll(ControlView());
-     });
+    GoogleSignInAuthentication googleSignInAuthentication=await googleuser.authentication;
+    final AuthCredential credential =GoogleAuthProvider.credential(
+        idToken:googleSignInAuthentication.idToken,
+        accessToken: googleSignInAuthentication.accessToken
+    );
+    await _auth.signInWithCredential(credential).then((user)async{
+      Get.dialog(Container(
+        width: 80,
+        height: 100,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(),
+            Text('wait for Login For Dokan'),
+          ],),
+      ),);
+      saveUser(user);
+      Get.offAll(ControlView());
+    });
+  }
+  void facebookSignInMethod()async{
+    FacebookLoginResult loginResult=await _facebookLogin.logIn(['email']);
+    final accessToken=loginResult.accessToken.token;
+    if(loginResult.status==FacebookLoginStatus.loggedIn){
+      final faceCredential=FacebookAuthProvider.credential(accessToken);
+      await _auth.signInWithCredential(faceCredential).then((user)async{
+        saveUser(user);
+      });
     }
-    void facebookSignInMethod()async{
-     FacebookLoginResult loginResult=await _facebookLogin.logIn(['email']);
-     final accessToken=loginResult.accessToken.token;
-     if(loginResult.status==FacebookLoginStatus.loggedIn){
-       final faceCredential=FacebookAuthProvider.credential(accessToken);
-       await _auth.signInWithCredential(faceCredential).then((user)async{
-         saveUser(user);
-       });
-     }
-    }
-    void signInWithEmailandpassword()async{
+  }
+  void signInWithEmailandpassword()async{
     try{
       await _auth.signInWithEmailAndPassword(email: email, password: password).then((value) async{
         getCurrentUserData(value.user.uid);
@@ -96,7 +99,7 @@ class AuthViewModel extends GetxController{
       await _auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((user)async {
-          saveUser(user);
+        saveUser(user);
       });
       Get.offAll(ControlView());
     }catch(e){

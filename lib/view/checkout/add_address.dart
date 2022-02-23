@@ -17,7 +17,7 @@ class AddAddress extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(height: 30,),
-                  defaultText(text: 'Billing address is the same as delivery address', fontsize: 14, color: Colors.black87),
+                  defaultText(text: 'Billing address is the same as delivery address', fontsize: 14,),
                   SizedBox(height: 30,),
                   defaultFormField(
                     validate: (String value){
@@ -40,7 +40,7 @@ class AddAddress extends StatelessWidget {
                     },
                     label: 'Street 2',
                     type: TextInputType.streetAddress,
-                    prefix: Icons.location_on_outlined,
+                    prefix: Icons.my_location_outlined,
                   ),
                   SizedBox(height: 15,),
                   defaultFormField(
@@ -52,7 +52,7 @@ class AddAddress extends StatelessWidget {
                     },
                     label: 'City',
                     type: TextInputType.streetAddress,
-                    prefix: Icons.location_on_outlined,
+                    prefix: Icons.location_city,
                   ),
                   SizedBox(height: 15,),
                   Container(
@@ -71,7 +71,7 @@ class AddAddress extends StatelessWidget {
                               },
                               label: 'State',
                               type: TextInputType.streetAddress,
-                              prefix: Icons.location_on_outlined,
+                              prefix: Icons.keyboard_capslock_rounded,
                             ),
                           ),
                         ),
@@ -87,7 +87,7 @@ class AddAddress extends StatelessWidget {
                               },
                               label: 'Country',
                               type: TextInputType.streetAddress,
-                              prefix: Icons.location_on_outlined,
+                              prefix: Icons.label_important,
                             ),
                           ),
                         ),

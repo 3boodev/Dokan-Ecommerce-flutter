@@ -49,9 +49,14 @@ class CartViewModel extends GetxController{
   update();
   }
   decreaseQuantity(int index)async{
-    _cartProductModel[index].quantity--;
-    _totalPrice-=double.parse(_cartProductModel[index].price);
-    await dbHelper.updateProduct(_cartProductModel[index]);
+    if(_cartProductModel[index].quantity<=1){
+      cartProductModel[index].quantity=1;
+    }
+    else{
+      _cartProductModel[index].quantity--;
+      _totalPrice-=double.parse(_cartProductModel[index].price);
+      await dbHelper.updateProduct(_cartProductModel[index]);
+    }
     update();
   }
 }

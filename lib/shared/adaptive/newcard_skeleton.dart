@@ -1,5 +1,6 @@
 import 'package:dokan/shared/adaptive/skeleton.dart';
 import 'package:dokan/shared/constants/const.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NewsCardSkelton extends StatelessWidget {
@@ -9,35 +10,56 @@ class NewsCardSkelton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const Skeleton(height: 120, width: 120),
-        const SizedBox(width: defaultPadding),
-        Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Skeleton(width: 80),
-              const SizedBox(height: defaultPadding / 2),
-              const Skeleton(),
-              const SizedBox(height: defaultPadding / 2),
-              const Skeleton(),
-              const SizedBox(height: defaultPadding / 2),
-              Row(
-                children: const [
-                  Expanded(
-                    child: Skeleton(),
-                  ),
-                  SizedBox(width: defaultPadding),
-                  Expanded(
-                    child: Skeleton(),
-                  ),
-                ],
-              )
+    return Container(
+      child: Column(
+        children: [
+          const SizedBox(height: defaultPadding),
+          const Skeleton(height: 40, width: double.infinity),
+          const SizedBox(height: defaultPadding),
+           Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const CircleSkeleton(),
+                const SizedBox(width: defaultPadding / 8),
+                const CircleSkeleton(),
+                const SizedBox(width: defaultPadding / 8),
+                const CircleSkeleton(),
+                const SizedBox(width: defaultPadding / 8),
+                const CircleSkeleton(),
+                const SizedBox(width: defaultPadding / 8),
+                const CircleSkeleton(),
+                const SizedBox(width: defaultPadding / 8),
+              ],
+            ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: const [
+              const Skeleton(height: 40, width: 100),
+              SizedBox(width: defaultPadding/4),
+              const Skeleton(height: 40, width: 100),
             ],
           ),
-        )
-      ],
+
+          const SizedBox(height: defaultPadding/2),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              Skeleton(width: double.infinity/2,height: 180,),
+              SizedBox(width: defaultPadding/4),
+              Skeleton(width: double.infinity/2,height: 180,),
+            ],
+          ),
+          const SizedBox(height: defaultPadding/2),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: const [
+              Skeleton(width: double.infinity/2,height: 180,),
+              SizedBox(width: defaultPadding/4),
+              Skeleton(width: double.infinity/2,height: 180,),
+            ],
+          )
+        ],
+      ),
     );
   }
 }

@@ -80,25 +80,21 @@ Widget defaultTextButton({
   Color textcolor=primaryColor,
   Color btncolor=Colors.blueGrey,
 })=>
-    Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
-        color: btncolor,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(width: 10,),
-          Image.asset(image_name,width:30,height: 30,),
-          SizedBox(width: 30,),
-          TextButton(
-            onPressed: onPress,
-            child:Text(text ,
-              style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color:textcolor ),) ,
-          ),
-        ],
-      ),
-    );
+     InkWell(
+        onTap: onPress,
+        splashColor: primaryColor ,
+        borderRadius:BorderRadius.circular(10),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(width: 10,),
+            Image.asset(image_name,width:30,height: 30,),
+            SizedBox(width: 30,),
+            Text(text ,
+                style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color:textcolor ),) ,
+          ],
+        ),
+      );
   Widget ProfileButtons({
     @required Function onPress,
     @required String text,

@@ -19,7 +19,7 @@ class ControlView extends GetWidget<AuthViewModel> {
   }
   Widget bottonnavbar(){
     return GetBuilder<ControlViewModel>(
-      init: Get.find(),
+      init: Get.find<ControlViewModel>(),
       builder:(controller)=> BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
