@@ -1,6 +1,7 @@
 import 'file:///C:/Users/abdal/AndroidStudioProjects/dokan/lib/core/viewmodel/themes_view_model.dart';
 import 'package:dokan/core/services/theme_service.dart';
 import 'package:dokan/helper/binding.dart';
+import 'package:dokan/model/themeapp.dart';
 import 'package:dokan/view/control_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -22,22 +23,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      /*theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backwardsCompatibility: false,
-          //Control the top bar of ststus system
-          systemOverlayStyle: SystemUiOverlayStyle(
-            statusBarColor: Colors.white,
-            statusBarBrightness: Brightness.light,
-            statusBarIconBrightness: Brightness.dark,
-          ),
-          elevation: 0,
-          backgroundColor: Colors.black,
-          foregroundColor: Colors.white,
-        ),
-        primaryColor: Colors.greenAccent,
-        fontFamily: 'Cairo',
-      ),*/
+      theme: ThemesApp.light,
+      darkTheme: ThemesApp.dark,
+      themeMode: ThemeController().themeDataGet,
       initialBinding: Binding(),
       home:Scaffold(
         body: ControlView(),

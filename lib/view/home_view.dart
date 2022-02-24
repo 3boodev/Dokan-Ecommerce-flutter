@@ -25,6 +25,7 @@ class HomeView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBox(height: 10,),
                     _textFormSearch(),
                     SizedBox(height: 30,),
                     defaultText(text: 'Categories', fontsize: 20,),
@@ -38,7 +39,7 @@ class HomeView extends StatelessWidget {
                         defaultText(text: 'See all', fontsize: 14, ),
                       ],
                     ),
-                    SizedBox(height: 25,),
+                    SizedBox(height: 20,),
                     _listviewprouducts(),
                   ],
                 ),
@@ -98,12 +99,12 @@ class HomeView extends StatelessWidget {
     return GetBuilder<HomeViewModel>(
       builder:(controller)=> Container(
         padding: EdgeInsets.only(bottom: 10),
-        height: 450,
+        height: 390,
         child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
-            childAspectRatio: 2.3/ 3,
-            crossAxisSpacing: 5,
+            childAspectRatio: 2/ 3,
+            crossAxisSpacing: 10,
             mainAxisSpacing: 1,
           ),
           shrinkWrap: true,
@@ -123,7 +124,7 @@ class HomeView extends StatelessWidget {
                   children: [
                     Container(
                       padding: EdgeInsets.all(5),
-                      height: 200,
+                      height: 180,
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(50),
@@ -131,10 +132,8 @@ class HomeView extends StatelessWidget {
                             ? Colors.black12
                             : Colors.white,
                       ),
-                      child: Container(
-                        height: 220,
-                        //child: Image.asset('assets/images/Image.png',fit: BoxFit.fill,),
-                        child: Image.network(controller.productModel[index].image,fit: BoxFit.fitHeight,),
+                      child: Center(
+                        child: Image.network(controller.productModel[index].image,fit: BoxFit.fitHeight,height: 140,),
                       ),
                     ),
                     SizedBox(height: 5),
@@ -151,7 +150,6 @@ class HomeView extends StatelessWidget {
         ),
       ),
     );
-
   }
 
 }

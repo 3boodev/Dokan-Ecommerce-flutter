@@ -6,7 +6,12 @@ import 'package:dokan/view/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class ProfileView extends StatelessWidget {
+class ProfileView extends StatefulWidget {
+  @override
+  State<ProfileView> createState() => _ProfileViewState();
+}
+
+class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<ProfileViewModel>(
@@ -60,25 +65,23 @@ class ProfileView extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             defaultText(text: 'Change Theme', fontsize: 22,),
-                            GetBuilder<ThemeViewModel>(
-                              init: Get.find(),
-                              builder: (controller) =>
-                              Container(
-                                decoration: BoxDecoration(
-                                  color: Get.isDarkMode
-                                      ? Colors.blue.shade500
-                                      : primaryColor,
-                                  shape: BoxShape.circle,
-                                ),
-                                child: IconButton(
-                                  icon: Icon(
-                                    controller.getstorage.read(controller.storageKey)==null||controller.getstorage.read(controller.storageKey)==false ?Icons.wb_sunny_rounded : Icons.nights_stay,
-                                    color: Colors.white,
-                                  ),
-                                  onPressed: () =>  controller.toggleDarkMode(),
-                                ),
-                              ),
-                            ),
+                                     InkWell(
+                                       onTap: (){
+                                         ThemeController().changesTheme();
+                                         setState(() {});
+                                       },
+                                       child: Container(
+                                         height: 60,
+                                         width: 60,
+                                         decoration: BoxDecoration(
+                                           shape: BoxShape.circle,
+                                           color:  Get.isDarkMode?primaryColor:Colors.grey.shade400,
+                                         ),
+                                         child: Icon(
+                                          Get.isDarkMode ? Icons.nights_stay: Icons.wb_sunny_rounded,
+                                    ),
+                                       ),
+                                     ),
                           ],
                         ),
                       ),
